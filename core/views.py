@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 import openai
 
 # Create your views here.
-openai.api_key = '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'
+openai.api_key = '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'
 
 # def home(request):
 #     return render(request, "core/home.html",{'reply': reply})

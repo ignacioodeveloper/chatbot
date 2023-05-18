@@ -80,8 +80,17 @@ WSGI_APPLICATION = 'ChatBot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
+        'NAME': path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': 'c##ttstark',
+        'PASSWORD': 'ttstark',
+        'TEST': {
+            'USER': 'default_test',
+            'TBLSPACE': 'default_test_tbls',
+            'TBLSPACE_TMP': 'default_test_tbls_tmp',
+        },
+    },
+
 }
 
 
@@ -120,13 +129,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
 
+
+
+STATIC_URL = 'static/core/'
 
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
-MEDIA_URL = '/media/'
 
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
