@@ -8,7 +8,7 @@
 </head>
 <body >
 
-    <div class="row container">
+    <!-- <div class="row container">
         <div class="column">
             <nav class="container">
                 <h1>ChatBot</h1>
@@ -17,14 +17,15 @@
         </div>
          
         <div class="column">
-            {% if reply %}
+
             <div class="card" id="mensaje">
                 <div class="card-body">
                     <h3>User: </h3>
                     <h3>{{ user_message }}</h3>
                 </div>
             </div>
-            <div class="card" id="respuesta">
+            {% if reply %}
+            <div class="card" id="chat-replies">
                 <div class="card-body">
                     <h3>A.I: </h3>
                     <h3>{{ reply }}</h3>
@@ -34,13 +35,58 @@
         </div>
         
         <div class="column">
-            <form method="POST">
+            <form id="chat-form" method="POST" action="{% url 'home' %}">
                 {% csrf_token %}
-                <input type="text" name="user_message">
+                <input type="text" name="user_message" id="user-message-input">
                 <button class="btn btn-primary" type="submit">Enviar</button>
             </form>
         </div>
-    </div>
+    </div> -->
+
+
+
+
+
+        <!-- <div class="card" id="mensaje">
+            <div class="card-body">
+                <h3>User: </h3>
+                <h3>{{ user_message }}</h3>
+            </div>
+        </div>
+        <div class="card" id="chat-replies">
+            {% if reply %}
+            <div class="card-body">
+                <h3>A.I: </h3>
+                <p>{{ reply }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <form id="chat-form" method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+                <input type="text" name="user_message" id="user-message-input">
+                <button class="btn btn-primary" type="submit">Enviar</button>
+        </form>
+ -->
+
+    <h1>Chatbot</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="user_message">
+        <button type="submit">Enviar</button>
+    </form>
+
+    {% for role, message in chat_history %}
+        <div class="column">
+            <div class="card">
+                <div class="card-body">
+                    <h3>{{ role }}: </h3>
+                    <h3>{{ message }}</h3>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'core/js/script.js'%}"></script>
 
