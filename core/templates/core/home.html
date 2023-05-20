@@ -7,85 +7,54 @@
   <link href="{% static 'core/css/style.css'%}" rel="stylesheet">
 </head>
 <body >
-
-    <!-- <div class="row container">
-        <div class="column">
-            <nav class="container">
-                <h1>ChatBot</h1>
-
-            </nav>
-        </div>
-         
-        <div class="column">
-
-            <div class="card" id="mensaje">
-                <div class="card-body">
-                    <h3>User: </h3>
-                    <h3>{{ user_message }}</h3>
-                </div>
-            </div>
-            {% if reply %}
-            <div class="card" id="chat-replies">
-                <div class="card-body">
-                    <h3>A.I: </h3>
-                    <h3>{{ reply }}</h3>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-        
-        <div class="column">
-            <form id="chat-form" method="POST" action="{% url 'home' %}">
-                {% csrf_token %}
-                <input type="text" name="user_message" id="user-message-input">
-                <button class="btn btn-primary" type="submit">Enviar</button>
-            </form>
-        </div>
-    </div> -->
-
-
-
-
-
-        <!-- <div class="card" id="mensaje">
-            <div class="card-body">
-                <h3>User: </h3>
-                <h3>{{ user_message }}</h3>
-            </div>
-        </div>
-        <div class="card" id="chat-replies">
-            {% if reply %}
-            <div class="card-body">
-                <h3>A.I: </h3>
-                <p>{{ reply }}</p>
-            </div>
-            {% endif %}
-        </div>
-
-        <form id="chat-form" method="POST" action="{% url 'home' %}">
-            {% csrf_token %}
-                <input type="text" name="user_message" id="user-message-input">
-                <button class="btn btn-primary" type="submit">Enviar</button>
-        </form>
- -->
+    <h1>{{ hora_fecha_actual }}</h1>
 
     <h1>Chatbot</h1>
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" name="user_message">
-        <button type="submit">Enviar</button>
-    </form>
 
-    {% for role, message in chat_history %}
-        <div class="column">
-            <div class="card">
-                <div class="card-body">
-                    <h3>{{ role }}: </h3>
-                    <h3>{{ message }}</h3>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+
+    <!-- <section class="discussion container">
+        {% for role, message in chat_history %}
+            {% if role == 'A.I' %}
+                <div class="bubble sender first">{{ role }}: {{ message }}</div>
+            {% else %}
+                <div></div>
+            {% endif %}
+            <div class="bubble recipient first">{{ role }}: {{ message }}</div>
+
+        
+        {% endfor %}
+    </section> -->
+    <section class="discussion">
+        <!-- {% if user_message and reply %}
+        <div class="bubble sender first">User: </div>
+        <div class="bubble sender last">{{ user_message }}</div>
+        
+        <div class="bubble recipient first">A.I: </div>
+        <div class="bubble recipient last">{{ reply }}</div>
+        {% endif %} -->
+        
+        {% for message in chat_history %}
+
+            <div class="bubble sender first">User:</div>
+            <div class="bubble sender last">{{ message.user_message }}</div>
+        
+            <div class="bubble recipient first">A.I:</div>
+            <div class="bubble recipient last">{{ message.reply }}</div>
+
+        {% endfor %}
+        
+        
+        <br><br>
+        <form class="container" method="post">
+            {% csrf_token %}
+            <input type="text" name="user_message">
+            <button type="submit">Enviar</button>
+        </form>
+    
+    </section>
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'core/js/script.js'%}"></script>
