@@ -24,6 +24,10 @@
         
         {% endfor %}
     </section> -->
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        <input type="submit" name="nuevo_chat" value="Nuevo chat">
+      </form>
     <section class="discussion">
         <!-- {% if user_message and reply %}
         <div class="bubble sender first">User: </div>
@@ -40,6 +44,7 @@
         
             <div class="bubble recipient first">A.I:</div>
             <div class="bubble recipient last">{{ message.reply }}</div>
+
 
         {% endfor %}
         

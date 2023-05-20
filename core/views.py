@@ -1,3 +1,5 @@
+from django.contrib.sessions.backends.db import SessionStore
+
 from django.shortcuts import redirect, render
 import openai
 from django.http import HttpResponse
@@ -20,6 +22,12 @@ def home(request):
     chat_history = request.session.get('chat_history',[])
 
     if request.method == 'POST':
+        if 'nuevo_chat' in request.POST:
+            request.session.flush()
+            request.session = SessionStore()
+
+            return redirect('home')
+
         user_message = request.POST.get('user_message')
 
         response = openai.Completion.create(
