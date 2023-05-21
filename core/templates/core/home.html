@@ -12,31 +12,13 @@
     <h1>Chatbot</h1>
 
 
-    <!-- <section class="discussion container">
-        {% for role, message in chat_history %}
-            {% if role == 'A.I' %}
-                <div class="bubble sender first">{{ role }}: {{ message }}</div>
-            {% else %}
-                <div></div>
-            {% endif %}
-            <div class="bubble recipient first">{{ role }}: {{ message }}</div>
 
-        
-        {% endfor %}
-    </section> -->
     <form method="post" action="{% url 'home' %}">
         {% csrf_token %}
         <input type="submit" name="nuevo_chat" value="Nuevo chat">
       </form>
     <section class="discussion">
-        <!-- {% if user_message and reply %}
-        <div class="bubble sender first">User: </div>
-        <div class="bubble sender last">{{ user_message }}</div>
-        
-        <div class="bubble recipient first">A.I: </div>
-        <div class="bubble recipient last">{{ reply }}</div>
-        {% endif %} -->
-        
+
         {% for message in chat_history %}
 
             <div class="bubble sender first">User:</div>
