@@ -4,6 +4,8 @@ from django.shortcuts import redirect, render
 import openai
 from django.http import HttpResponse
 import datetime
+from .models import ChatEntry
+
 # Create your views here.
 openai.api_key = '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'
 
@@ -41,6 +43,10 @@ def home(request):
         )
 
         reply = response.choices[0].text.strip()
+
+        chat_entry = ChatEntry(user_message=user_message, reply=reply)
+        chat_entry.save()
+        
         chat_history.append({'user_message': user_message, 'reply': reply})
         request.session['chat_history'] = chat_history
 
