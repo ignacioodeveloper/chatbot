@@ -18,9 +18,12 @@ def obtener_hora_y_fecha():
     return hora_fecha_actual
 
 
+
+
+
 def home(request):
     hora_fecha_actual = obtener_hora_y_fecha()
-    
+
     chat_history = request.session.get('chat_history',[])
 
     if request.method == 'POST':
@@ -46,7 +49,7 @@ def home(request):
 
         chat_entry = ChatEntry(user_message=user_message, reply=reply)
         chat_entry.save()
-        
+
         chat_history.append({'user_message': user_message, 'reply': reply})
         request.session['chat_history'] = chat_history
 
