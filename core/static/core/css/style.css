@@ -1,10 +1,13 @@
 body {
-    background-color: black;
+    background-color: #706969;
 }
 
+.titulo, .input {
+	text-align: center;
+}
 
 .discussion {
-	max-width: 600px;
+	max-width: 1000px;
 	margin: 0 auto;
 	
 	display: flex;

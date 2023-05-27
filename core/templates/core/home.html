@@ -7,17 +7,21 @@
   <link href="{% static 'core/css/style.css'%}" rel="stylesheet">
 </head>
 <body >
-    <h1>{{ hora_fecha_actual }}</h1>
+    <div class="titulo container">
+        <h1>{{ hora_fecha_actual }}</h1>
+        <h1>Chatbot</h1>
+        <h1>{{ precio }}</h1>
+    </div>
+    
 
-    <h1>Chatbot</h1>
 
 
 
     <form method="post" action="{% url 'home' %}">
         {% csrf_token %}
         <input type="submit" name="nuevo_chat" value="Nuevo chat">
-      </form>
-    <section class="discussion">
+    </form>
+    <section class="discussion container">
 
         {% for message in chat_history %}
 
@@ -31,15 +35,17 @@
         {% endfor %}
         
         
-        <br><br>
+
+    </section>
+
+    <br><br>
+    <div class="input container fixed-bottom">
         <form class="container" method="post">
             {% csrf_token %}
             <input type="text" name="user_message">
-            <button type="submit">Enviar</button>
+            <button class="btn btn-primary" type="submit">Enviar</button>
         </form>
-    
-    </section>
-
+    </div>
 
 
 
